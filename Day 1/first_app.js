@@ -7,3 +7,4 @@ fs.writeFileSync("Hello.txt","Hello From Node.js");//A method used to write file
 console.log("Hello From Node.js");
 
 
+     
