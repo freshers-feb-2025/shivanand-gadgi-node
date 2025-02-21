@@ -4,7 +4,6 @@ const mysqlPool=require("../database/db");
 
 const fs = require("fs");
 
-
 const path=require('path');
 const rootDir=require("../util/root_path");
 
@@ -15,7 +14,7 @@ router.get("/data", async (req, res) => {
         const [rows] = await mysqlPool.query("SELECT * FROM emp ORDER BY id ASC");
         res.json(rows);
     } catch (error) {
-        res.status(500).send("Error fetching data!");
+        res.status(404).send("Error fetching data!");
     }
 });
 
@@ -31,7 +30,7 @@ router.get("/search", async (req, res) => {
             res.send("Employee not found.");
         }
     } catch (error) {
-        res.status(500).send("Error searching employee!");
+        res.status(404).send("Error searching employee!");
     }
 });
 
@@ -41,7 +40,7 @@ router.post("/submit",async (req,res)=>{
         await mysqlPool.query("INSERT INTO emp (name, city) VALUES (?, ?)", [name, city]);
         res.send("Employee data saved successfully!");
     } catch (error) {
-        res.status(500).send(error);
+        res.status(404).send(error);
     }
 });
 
@@ -57,7 +56,7 @@ router.put("/update", async (req, res) => {
         }
         res.send("Employee data updated successfully!");
     } catch (error) {
-        res.status(500).send("Error updating data!");
+        res.status(404).send("Error updating data!");
     }
 });
 
@@ -75,7 +74,7 @@ router.delete("/delete", async (req, res) => {
         }
         res.send("Employee deleted successfully!");
     } catch (error) {
-        res.status(500).send("Error deleting employee!");
+        res.status(404).send("Error deleting employee!");
     }
 });
 
